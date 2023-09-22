@@ -1,4 +1,6 @@
-##### `elements:{}`提取字段列表
+## Jexter
+
+### elements:{}字段提取列表
 
 elements下面的字段可直接为xpath，或者 TASK_(.+) 这样的格式来返回task中的相应字段内容，支持对返回内容的进一步修饰，同xpath返回的内容一样
 
@@ -24,124 +26,137 @@ function: regexp 与 return 构成的函数，更加灵活强大
 must_match: 仅用在提取表格数据时，按正则丢弃某些不需要的行；非表格提取时不起作用
 ```
 
-###### col, regexp, innerHtml, text 为一级的内容提取函数: 
-
-- 优先级 `col > regexp > innerHtml > text`
-
-- 若存在高优先级的字段，则忽略低优先级的字段
-
-- col默认返回xpath对应的string，若设定`type:array`，则会返回不为空的list，这个在xpath路径下有多个元素的时候，可以直接将每个元素分开返回，比如有html:
-
-  ```
-  <div><span>张三</span><span>李四</span><span>王五</span><span>李二麻子</span></div>
-  ```
-
-  ```json
-  “authors": {“col": “//div/span”, “type“: ”array“}
-  ```
-
-  上面的路径中，若不指定array，返回的是所有author连在一起的字串，指定type为array后，返回
-
-  ```
-  “authors”:[“张三”, “李四”, “王五”, “李二麻子"]
-  ```
-
-- regexp相当于function的简化版，若不设定return, 则默认返回每个匹配的第一个，即 return = [0]
-
-- innerHtml 返回xpath对应节点的html源码拼接后的字串
-
-###### callback, function, default, data_out为提取后的数据进一步修饰的函数：
-
-- 优先级 `callback > function > default > data_out`
-
-- 修饰函数会按先callback 后 function的次序执行
-
-- | callback函数 | 说明                                                         |
-  | ------------ | ------------------------------------------------------------ |
-  | trim         | 删除半角空格                                                 |
-  | trim2        | 删除全角和半角空格                                           |
-  | parse_date   | 将不同格式的日期，格式化为：YYYY-MM-DD2017年1月1日==>2017-01-012017-1-1==>2017-01-012017.1.1==>2017-01-012017/1/1==>2017-01-01 |
-  | extract_date | 从字串中提取第一个匹配的日期，然后格式化为：YYYY-MM-DD       |
-  | extract_text | 清除html中标签，仅获得文字内容                               |
-  | dp2_filter   | 过滤不符合正则表达式的txt                                    |
-  | json_extract | 提取json中的某个元素                                         |
-  | absolute_url | 将相对地址转化为绝对地址                                     |
-
-- ```json
-  "function":{"regexp":"(\d+)(FEG)","return":["TAG",0,"HEL",1],"type":"array"}
-  ```
-
-  - function有三个参数：regexp, return, type
-  - regexp为正则表达式，可以通过()对部分匹配的内容分组，然后在return中按序号（从0开始）自由组合
-  - return中除支持()匹配的序号外，还可以为其他字符串，返回的结果是按数组指定的次序拼接的结果
-  - type默认为array, 返回list；若为’string’或其他则返回list直接拼接以后的字串
-
-- default设定alternative节点的路径，当col节点返回的txt为空时触发。
-
-- data_out最后应用[JMESPath](https://jmespath.org/)或[jq](https://jqplay.org/)对结果进一步修饰
-
-###### prefix, postfix 前面的内容提取到后，最后把前后缀加上返回
-
-- 若需要解析多行的表格数据，在elements同级增加total_rows节点
-
-- - total_rows节点为所有行的数组xpath路径
-  - 若elements中字段的相对应的rows与total_rows指定的路径不同时，可以在col同级增加row节点
-
-- elements通常为hash数组{}，这样返回的所有字段都必须有名字，若希望返回没有名字的数组，可以在elements后面放一个由xpath字串构成的数组
-
-- total_rows 中的xpath路径必须为针对整个页面的路径，不能是相对于某个节点的路径
-
-##### 界面内容
-
-![image-20230920151628130](assets/image-20230920151628130.png)
-
-##### 示例
-
-1. 单独提取文字
+**示例单独提取文字**
 
 ```html
 $html=‘<html><body><span id=“key”>hello</span></body></html>';
 
 ```
 
-提取html中hello的parse_function如下：
+提取html中hello的parse_function如下
 
 ```json
-{“elements”:{"content":"//span[@id=‘key’]/text()"}}
+{"elements":{"content":"//span[@id=‘key’]/text()"}}
 ```
 
-2. 提取日期
+##### 一级内容提取函数
 
-   ```html
-   <html><body><span id="date"> 2017年7月19日 </span></body></html>
-   ```
+优先级 `col > regexp > innerHtml > text`
 
-   提取日期并加上前后缀
+若存在高优先级的字段，则忽略低优先级的字段
 
-   ```json
-   {
-     "elements":{
-       "date":{
-         "prefix":"---",
-         "col":"//span[@id=\"date\"]/text()",
-         "callback":"trim|parse_date",
-         "postfix":"---"
-       }
-     }
-   }
-   ```
+###### col
 
-   result
+默认返回xpath对应的string，若设定`type:array`，则会返回不为空的list，这个在xpath路径下有多个元素的时候，可以直接将每个元素分开返回，比如有html:
 
-   ```json
-   {
-     "date": "---2017-07-19---"
-   }
-   ```
+```
+<div><span>张三</span><span>李四</span><span>王五</span><span>李二麻子</span></div>
+```
 
-   
+```json
+“authors": {“col": “//div/span”, “type“: ”array“}
+```
 
-3. 嵌套循环+Elements 为数组
+上面的路径中，若不指定array，返回的是所有author连在一起的字串，指定type为array后，返回
+
+```json
+{"authors":["张三", "李四", "王五", "李二麻子"]}
+```
+
+###### regexp
+
+相当于function的简化版，若不设定return, 则默认返回每个匹配的第一个，即 return = [0]
+
+###### innerHtml 
+
+返回xpath对应节点的html源码拼接后的字串
+
+###### text
+
+##### 二级修饰函数
+
+为提取后的数据进一步修饰的函数
+
+优先级 `callback > function > default > data_out`
+
+###### Callback
+
+| 可选参数     | 说明                                                         |
+| ------------ | ------------------------------------------------------------ |
+| trim         | 删除半角空格                                                 |
+| trim2        | 删除全角和半角空格                                           |
+| parse_date   | 将不同格式的日期，格式化为：YYYY-MM-DD2017年1月1日==>2017-01-012017-1-1==>2017-01-012017.1.1==>2017-01-012017/1/1==>2017-01-01 |
+| extract_date | 从字串中提取第一个匹配的日期，然后格式化为：YYYY-MM-DD       |
+| extract_text | 清除html中标签，仅获得文字内容                               |
+| dp2_filter   | 过滤不符合正则表达式的txt                                    |
+| json_extract | 提取json中的某个元素                                         |
+| absolute_url | 将相对地址转化为绝对地址                                     |
+
+###### function
+
+```json
+{"function":{"regexp":"(\d+)(FEG)","return":["TAG",0,"HEL",1],"type":"array"}}
+```
+
+  - function有三个参数：regexp, return, type
+  - regexp为正则表达式，可以通过()对部分匹配的内容分组，然后在return中按序号（从0开始）自由组合
+  - return中除支持()匹配的序号外，还可以为其他字符串，返回的结果是按数组指定的次序拼接的结果
+  - type默认为array, 返回list；若为’string’或其他则返回list直接拼接以后的字串
+
+###### default
+
+设定alternative节点的路径，当col节点返回的txt为空时触发。
+
+###### data_out
+
+最后应用[JMESPath](https://jmespath.org/)或[jq](https://jqplay.org/)对结果进一步修饰
+
+##### 三级前后缀函数
+
+###### prefix,postfix
+
+前面的内容提取到后，最后把前后缀加上返回
+
+**示例提取日期**
+
+```html
+<html><body><span id="date"> 2017年7月19日 </span></body></html>
+```
+
+提取日期并加上前后缀
+
+```json
+{
+  "elements":{
+    "date":{
+      "prefix":"---",
+      "col":"//span[@id=\"date\"]/text()",
+      "callback":"trim|parse_date",
+      "postfix":"---"
+    }
+  }
+}
+```
+
+结果
+
+```json
+{
+  "date": "---2017-07-19---"
+}
+```
+
+### 循环提取
+
+###### 常规表格
+
+- 若需要解析多行的表格数据，在elements同级增加total_rows节点
+- - total_rows节点为所有行的数组xpath路径
+  - 若elements中字段的相对应的rows与total_rows指定的路径不同时，可以在col同级增加row节点
+- elements通常为hash数组{}，这样返回的所有字段都必须有名字，若希望返回没有名字的数组，可以在elements后面放一个由xpath字串构成的数组
+- total_rows 中的xpath路径必须为针对整个页面的路径，不能是相对于某个节点的路径
+
+**示例嵌套循环+Elements 为数组**
 
 ```html
 <div class="record-item">
@@ -421,4 +436,15 @@ Result:
 ]
 ```
 
-[Special_for_table](parsefunction.parse_for_special_table.md)
+###### 变化表格
+
+[Special_for_table](Jexter.parse_for_special_table.md)
+
+### 界面内容
+
+![image-20230920151628130](assets/image-20230920151628130.png)
+
+
+
+
+
