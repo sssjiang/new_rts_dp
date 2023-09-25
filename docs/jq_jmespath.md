@@ -2,6 +2,16 @@
 
 # jq && jmespath tips
 
+Jq : `.` 获取所有字段
+
+jmespath:获取所有字段方式如下
+
+```json
+"jpath": ""
+```
+
+
+
 ## 字符串拼接：
 
 ### jmespath
@@ -34,13 +44,130 @@ result
 
 #### `+=`
 
-（1）给子元素数字中每个element增加一个父元素中的值，比如给data.value中每个元素增加一个dp2_id的key：关键是+=
+给子元素数字中每个element增加一个父元素中的值，比如给data.value中每个元素增加一个dp2_id的key：关键是+=
 
- ![img](assets/edd637da-f544-485c-a6ad-89832b4c9d11.png)
+source
+
+```json
+{
+"dp2_id": "1234",
+"data": {
+"value": [
+{
+"id": "1",
+"key": "ssss"
+},
+{
+"id": "2",
+"key": "bbbb"
+},
+{
+"id": "3",
+"key": "cccc"
+}
+]
+}
+}
+```
+
+parse
+
+```json
+.data.value[]+={dp2_id:.dp2_id}
+```
+
+result
+
+```json
+{
+  "dp2_id": "1234",
+  "data": {
+    "value": [
+      {
+        "id": "1",
+        "key": "ssss",
+        "dp2_id": "1234"
+      },
+      {
+        "id": "2",
+        "key": "bbbb",
+        "dp2_id": "1234"
+      },
+      {
+        "id": "3",
+        "key": "cccc",
+        "dp2_id": "1234"
+      }
+    ]
+  }
+}
+
+```
+
+
 
 #### `map`
 
-(2) 将数组中一个元素当做一个变量的值: 数组map以后，可以针对每个元素操作
+将数组中每个元素当做一个变量的值: 数组map以后，可以针对每个元素操作
+
+source
+
+```json
+{
+"dp2_id": "1234",
+"data": {
+"value": [
+{
+"id": "1",
+"key": "ssss"
+},
+{
+"id": "2",
+"key": "bbbb"
+},
+{
+"id": "3",
+"key": "cccc"
+}
+]
+}
+}
+```
+
+parse
+
+```json
+.data.value|map({data:.,id:.id})
+```
+
+result
+
+```json
+[
+  {
+    "data": {
+      "id": "1",
+      "key": "ssss"
+    },
+    "id": "1"
+  },
+  {
+    "data": {
+      "id": "2",
+      "key": "bbbb"
+    },
+    "id": "2"
+  },
+  {
+    "data": {
+      "id": "3",
+      "key": "cccc"
+    },
+    "id": "3"
+  }
+]
+
+```
 
 ![img](assets/795c70a1-5663-4283-b147-184aa740bcdd.png)
 
@@ -48,17 +175,129 @@ result
 
 将多个同级元素与字符串拼接后，形成一个新的值：用（）将多个值或字串链接的算式括起来
 
-![img](assets/e10380d5-13d5-415c-93e3-e89654e83256.png)
+**单个元素**
+
+source
+
+```json
+{
+"id": "1",
+"key": "ssss"
+}
+```
+
+parse
+
+```json
+map({newKey:(.id+"--"+.key)})
+```
+
+result
+
+```json
+{
+  "newKey": "1--ssss"
+}
+```
+
+**数组元素**
+
+source
+
+```json
+[{
+"id": "1",
+"key": "ssss"
+},
+{
+"id": "2",
+"key": "bbbb"
+},
+{
+"id": "3",
+"key": "cccc"
+}
+]
+```
+
+parse
+
+```json
+map({newKey:(.id+"--"+.key)})
+```
+
+result
+
+```json
+[
+  {
+    "newKey": "1--ssss"
+  },
+  {
+    "newKey": "2--bbbb"
+  },
+  {
+    "newKey": "3--cccc"
+  }
+]
+
+```
+
+
 
 #### `Select`
 
 用select筛选数组中的元素，然后对元素中字段进行条件判断，然后拼接
 
+source
+
+```json
+{"attachments":[{
+"id":"34a52cbd-9ade-4d2e-e388-08d9d500bc62",
+"s_ModifiedAt":"2022-01-11T16:24:41.9891548Z",
+"s_ModifiedBy":"SyncHostedService",
+"s_CreatedAt":"2022-01-11T16:24:41.989154Z",
+"s_CreatedBy":"SyncHostedService",
+"documentName":"FFFF",
+"documentType":"PRODUCT",
+"url": null,
+"publishAt":"2012-07-21T11:34:39.25Z",
+"updatedAt":"None",
+"refId_Product":"90a61e9f-21d2-484b-d615-08d9d500bc6a"},
+{
+"id":"34a52cbd-9ade-4d2e-e388-08d9d500bc62",
+"s_ModifiedAt":"2022-01-11T16:24:41.9891548Z",
+"s_ModifiedBy":"SyncHostedService",
+"s_CreatedAt":"2022-01-11T16:24:41.989154Z",
+"s_CreatedBy":"SyncHostedService",
+"documentName":"FFFF",
+"documentType":"PRODUCT",
+"url": null,
+"publishAt":"2012-07-21T11:34:39.25Z",
+"updatedAt":"None",
+"refId_Product":"90a61e9f-21d2-484b-d615-08d9d500bc6a"}]}
+
+```
+
+Parse
+
 ```json
 .attachments|map(select(.documentName!="None"))|map({link:(if .url=="None" or .url==null then "https://mri.cts-mrp.eu/portal/v1/odata/Document("+.id+")/Download" elif .url|test("pdf";"ix") then .url elif .url|test("doc";"ix") then .url|"http://www.vmd.defra.gov.uk/ProductInformationDatabase/files/SPC_Documents/SPC_"+capture("SPC_(?<id>[[:digit:]]+)").id+".PDF" else .url end)})
 ```
 
-![img](assets/9fc06b6b-a242-4c60-b2c0-0b332f4888fb.png)
+result
+
+```json
+[
+  {
+    "link": "https://mri.cts-mrp.eu/portal/v1/odata/Document(34a52cbd-9ade-4d2e-e388-08d9d500bc62)/Download"
+  },
+  {
+    "link": "https://mri.cts-mrp.eu/portal/v1/odata/Document(34a52cbd-9ade-4d2e-e388-08d9d500bc62)/Download"
+  }
+]
+
+```
 
 在线教程：https://stedolan.github.io/jq/tutorial/
 
