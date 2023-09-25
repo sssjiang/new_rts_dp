@@ -2,17 +2,23 @@
 
 # jq && jmespath tips
 
+[jq在线测试地址](https://jqplay.org/)
+
+[jmespath在线测试地址](https://play.jmespath.org/)
+
+[jq在线教程](https://stedolan.github.io/jq/tutorial/)
+
 Jq : `.` 获取所有字段
 
 jmespath:获取所有字段方式如下
 
-```json
+```jpath
 "jpath": ""
 ```
 
 
 
-## 字符串拼接：
+## 字符串拼接
 
 ### jmespath
 
@@ -27,7 +33,7 @@ Source
 
 parse
 
-```json
+```jq
 join(' ', [firstName, lastName])
 
 ```
@@ -48,29 +54,29 @@ source
 
 ```json
 {
-"dp2_id": "1234",
-"data": {
-"value": [
-{
-"id": "1",
-"key": "ssss"
-},
-{
-"id": "2",
-"key": "bbbb"
-},
-{
-"id": "3",
-"key": "cccc"
-}
-]
-}
+    "dp2_id": "1234",
+    "data": {
+        "value": [
+            {
+                "id": "1",
+                "key": "ssss"
+            },
+            {
+                "id": "2",
+                "key": "bbbb"
+            },
+            {
+                "id": "3",
+                "key": "cccc"
+            }
+        ]
+    }
 }
 ```
 
 parse
 
-```json
+```jq
 .data.value[]+={dp2_id:.dp2_id}
 ```
 
@@ -112,29 +118,29 @@ source
 
 ```json
 {
-"dp2_id": "1234",
-"data": {
-"value": [
-{
-"id": "1",
-"key": "ssss"
-},
-{
-"id": "2",
-"key": "bbbb"
-},
-{
-"id": "3",
-"key": "cccc"
-}
-]
-}
+    "dp2_id": "1234",
+    "data": {
+        "value": [
+            {
+                "id": "1",
+                "key": "ssss"
+            },
+            {
+                "id": "2",
+                "key": "bbbb"
+            },
+            {
+                "id": "3",
+                "key": "cccc"
+            }
+        ]
+    }
 }
 ```
 
 parse
 
-```json
+```jq
 .data.value|map({data:.,id:.id})
 ```
 
@@ -203,24 +209,25 @@ result
 source
 
 ```json
-[{
-"id": "1",
-"key": "ssss"
-},
-{
-"id": "2",
-"key": "bbbb"
-},
-{
-"id": "3",
-"key": "cccc"
-}
+[
+    {
+        "id": "1",
+        "key": "ssss"
+    },
+    {
+        "id": "2",
+        "key": "bbbb"
+    },
+    {
+        "id": "3",
+        "key": "cccc"
+    }
 ]
 ```
 
 parse
 
-```json
+```jq
 map({newKey:(.id+"--"+.key)})
 ```
 
@@ -250,36 +257,41 @@ result
 source
 
 ```json
-{"attachments":[{
-"id":"34a52cbd-9ade-4d2e-e388-08d9d500bc62",
-"s_ModifiedAt":"2022-01-11T16:24:41.9891548Z",
-"s_ModifiedBy":"SyncHostedService",
-"s_CreatedAt":"2022-01-11T16:24:41.989154Z",
-"s_CreatedBy":"SyncHostedService",
-"documentName":"FFFF",
-"documentType":"PRODUCT",
-"url": null,
-"publishAt":"2012-07-21T11:34:39.25Z",
-"updatedAt":"None",
-"refId_Product":"90a61e9f-21d2-484b-d615-08d9d500bc6a"},
 {
-"id":"34a52cbd-9ade-4d2e-e388-08d9d500bc62",
-"s_ModifiedAt":"2022-01-11T16:24:41.9891548Z",
-"s_ModifiedBy":"SyncHostedService",
-"s_CreatedAt":"2022-01-11T16:24:41.989154Z",
-"s_CreatedBy":"SyncHostedService",
-"documentName":"FFFF",
-"documentType":"PRODUCT",
-"url": null,
-"publishAt":"2012-07-21T11:34:39.25Z",
-"updatedAt":"None",
-"refId_Product":"90a61e9f-21d2-484b-d615-08d9d500bc6a"}]}
-
+    "attachments": [
+        {
+            "id": "34a52cbd-9ade-4d2e-e388-08d9d500bc62",
+            "s_ModifiedAt": "2022-01-11T16:24:41.9891548Z",
+            "s_ModifiedBy": "SyncHostedService",
+            "s_CreatedAt": "2022-01-11T16:24:41.989154Z",
+            "s_CreatedBy": "SyncHostedService",
+            "documentName": "FFFF",
+            "documentType": "PRODUCT",
+            "url": null,
+            "publishAt": "2012-07-21T11:34:39.25Z",
+            "updatedAt": "None",
+            "refId_Product": "90a61e9f-21d2-484b-d615-08d9d500bc6a"
+        },
+        {
+            "id": "34a52cbd-9ade-4d2e-e388-08d9d500bc62",
+            "s_ModifiedAt": "2022-01-11T16:24:41.9891548Z",
+            "s_ModifiedBy": "SyncHostedService",
+            "s_CreatedAt": "2022-01-11T16:24:41.989154Z",
+            "s_CreatedBy": "SyncHostedService",
+            "documentName": "FFFF",
+            "documentType": "PRODUCT",
+            "url": null,
+            "publishAt": "2012-07-21T11:34:39.25Z",
+            "updatedAt": "None",
+            "refId_Product": "90a61e9f-21d2-484b-d615-08d9d500bc6a"
+        }
+    ]
+}
 ```
 
 Parse
 
-```json
+```jq
 .attachments|map(select(.documentName!="None"))|map({link:(if .url=="None" or .url==null then "https://mri.cts-mrp.eu/portal/v1/odata/Document("+.id+")/Download" elif .url|test("pdf";"ix") then .url elif .url|test("doc";"ix") then .url|"http://www.vmd.defra.gov.uk/ProductInformationDatabase/files/SPC_Documents/SPC_"+capture("SPC_(?<id>[[:digit:]]+)").id+".PDF" else .url end)})
 ```
 
@@ -297,111 +309,93 @@ result
 
 ```
 
-在线教程：https://stedolan.github.io/jq/tutorial/
-
 ## 解析json string
 
 ```json
 "[{\"herb_cn_name\":\"\\u77ee\\u5730\\u8336\",\"herb_pinyin\":\"Aidicha\",\"herb_en_name\":\"Ardisiae Japonicae Herba\",\"child_cn_name\":\"\\u6b62\\u54b3\\u5e73\\u5598\\u836f\",\"child_en_name\":\"Antitussive Antiasthmetics\"}]"
 ```
 
-Filter：`.|fromjson`
+jq表达式 Filter：`.|fromjson`
 
 Result:
 
 ```json
 [
-
- {
-
-  "herb_cn_name": "矮地茶",
-
-  "herb_pinyin": "Aidicha",
-
-  "herb_en_name": "Ardisiae Japonicae Herba",
-
-  "child_cn_name": "止咳平喘药",
-
-  "child_en_name": "Antitussive Antiasthmetics"
-
- }
-
+    {
+        "herb_cn_name": "矮地茶",
+        "herb_pinyin": "Aidicha",
+        "herb_en_name": "Ardisiae Japonicae Herba",
+        "child_cn_name": "止咳平喘药",
+        "child_en_name": "Antitussive Antiasthmetics"
+    }
 ]
 ```
 
-从网页中提取JSON的parse function的不同写法：
+### 从网页中提取JSON的jexter不同写法
 
-### Jmespath：
+#### Jmespath
 
 ```json
 {
-
- "elements": {
-
- "allData": {
-
-   "col": "//script",
-
-   "function": {
-
-     "regexp": "data: (\\[\\{.+?\\}\\])",
-
-     "callback": "json_decode"
-
-   },
-
-   "data_out": "[0]"
-
- }
-
-  }
-
+    "elements": {
+        "allData": {
+            "col": "//script",
+            "function": {
+                "regexp": "data: (\\[\\{.+?\\}\\])",
+                "callback": "json_decode"
+            },
+            "data_out": "[0]"
+        }
+    }
 }
 ```
 
-### Jq:
+#### Jq
 
 ```json
 {
+    "elements": {
+        "allData": {
+            "col": "//script",
+            "function": {
+                "regexp": "data: (\\[\\{.+?\\}\\])",
+                "type": "string"
+            },
+            "data_out": {
+                "jq": ".|fromjson"
+            }
+        }
+    }
+}
+```
 
- "elements": {
+详细内容参考dp2_id:13757804以下为该dp2_id 的完整jexter代码
 
-  "token": {
-
-   "col": "//script",
-
-   "function": {
-
-"regexp": "&token=(.+?)'>",
-
-"type": "string"
-
-   }
-
+```json
+{
+  "elements": {
+    "token": {
+      "col": "//script",
+      "function": {
+        "regexp": "&token=(.+?)'>",
+        "type": "string"
+      }
+    },
+    "allData": {
+      "col": "//script",
+      "function": {
+        "regexp": "data: (\\[\\{.+?\\}\\])",
+        "type": "string"
+      },
+      "data_out": {
+        "jq": ".|fromjson"
+      }
+    }
   },
-
-  "allData": {
-
-   "col": "//script",
-
-   "function": {
-
-"regexp": "data: (\\[\\{.+?\\}\\])",
-
-"type": "string"
-
-   },
-
-   "data_out": {
-
-"jq": ".|fromjson"
-
-   }
-
+  "data_out": {
+    "jq": "[{herb_en_name:.allData[].herb_en_name,token:.token}]"
   }
-
- }
-
 }
 ```
 
+先提取到token,和allData字段，然后在data_out阶段只选取herb_en_name值和token value。

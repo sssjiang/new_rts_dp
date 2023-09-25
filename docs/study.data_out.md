@@ -22,8 +22,6 @@ JSON数据提取与转化:jmespath (默认), jq
 }
 ```
 
-
-
 ### 数据库mongo
 
 #### 第1种写法
@@ -54,10 +52,8 @@ JSON数据提取与转化:jmespath (默认), jq
 
 #### 第2种写法
 
-"api":
-
 ```json
-"api": {
+{
     "url": "http://api2.drugsea.cn/dp2/mongo/save/v2",
     "table": "zb_scyxzbcg_drug_list",
     "where": {
@@ -84,8 +80,6 @@ api 支持MySQL和mongdb两种数据库的写入，两种写入的示例如下�
 
 #### 数据库MySQL
 
-"api":
-
 ```json
 {
     "url": "http://api2.drugsea.cn/save/db/data/attachments",
@@ -101,16 +95,12 @@ api 支持MySQL和mongdb两种数据库的写入，两种写入的示例如下�
 }
 ```
 
-
-
 - url为支持attachments更新的专属API
 - where中的dp2_id为extra_data.dp2_id
 - key是attchments任务的OSS_JSON中的key
 - data_out处理的时候，会自动把extra_data.row_idx加到data中
 
 #### 数据库mongdb
-
-"api":
 
 ```json
 {
@@ -129,8 +119,6 @@ api 支持MySQL和mongdb两种数据库的写入，两种写入的示例如下�
 
 除了以上修改attachments的方法，也可以用下面的方式更新具体的字段内容：/dp2/mongo/save/v2
 
-"api":
-
 ```json
 {
     "url": "http://api2.drugsea.cn/dp2/mongo/save/v2",
@@ -144,20 +132,17 @@ api 支持MySQL和mongdb两种数据库的写入，两种写入的示例如下�
 }
 ```
 
-
-
 ## 数据更新后通知：notification
 
 ```json
-{notification:{
+{notification: {
 
-  type:"openid, email",
+  type: "openid, email",
 
-   receiver:"....",
+   receiver: "....",
 
-   content:"{keyword}" // 支持变量替换
-
-}
+   content: "{keyword}" // 支持变量替换
+    }
 }
 ```
 

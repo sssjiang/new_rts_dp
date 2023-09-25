@@ -5,9 +5,13 @@
 ##### 按第一行标题提取表格数据(列数固定，行数可变)
 
 - 若需要解析多行的表格数据，在elements同级增加total_rows节点
-- - total_rows节点为所有行的数组xpath路径
+
+  - total_rows节点为所有行的数组xpath路径
+
   - 若elements中字段的相对应的rows与total_rows指定的路径不同时，可以在col同级增加row节点
+
 - elements通常为hash数组{}，这样返回的所有字段都必须有名字，若希望返回没有名字的数组，可以在elements后面放一个由xpath字串构成的数组
+
 - total_rows 中的xpath路径必须为针对整个页面的路径，不能是相对于某个节点的路径
 
 **示例嵌套循环+Elements 为数组**
@@ -151,21 +155,21 @@ Parse function:
 
 ```json
 {
-  "total_rows": "//div[@class='left-record']",
-  "elements": {
-    "creator": {
-      "elements": [
-        "./text()"
-      ],
-      "total_rows": "//div[@class='record-subtitle']/a[@class='creator']"
-    },
-    "keyword": {
-      "elements": [
-        "."
-      ],
-      "total_rows": "//div[@class='record-keyword' ]/span"
+    "total_rows": "//div[@class='left-record']",
+    "elements": {
+        "creator": {
+            "elements": [
+                "./text()"
+            ],
+            "total_rows": "//div[@class='record-subtitle']/a[@class='creator']"
+        },
+        "keyword": {
+            "elements": [
+                "."
+            ],
+            "total_rows": "//div[@class='record-keyword' ]/span"
+        }
     }
-  }
 }
 ```
 
@@ -334,37 +338,39 @@ Result:
 解析第一列为title的表格
 
 ```json
-"table2": {
-      "rows": "(//div[@class='listmain']/div/table/tbody/tr)[position()>1]",
-      "cells": "./td",
-      "title_column": {
-        "fields": {
-          "dp2_id": {
-            "col": "TASK_id"
-          },
-          "gcid": {
-            "col": "TASK_url",
-            "function": {
-              "regexp": "Id=(\\d+)$",
-              "return": [
-                0
-              ],
-              "type": "string"
+{
+    "table2": {
+        "rows": "(//div[@class='listmain']/div/table/tbody/tr)[position()>1]",
+        "cells": "./td",
+        "title_column": {
+            "fields": {
+                "dp2_id": {
+                    "col": "TASK_id"
+                },
+                "gcid": {
+                    "col": "TASK_url",
+                    "function": {
+                        "regexp": "Id=(\\d+)$",
+                        "return": [
+                            0
+                        ],
+                        "type": "string"
+                    }
+                },
+                "auth_num": {
+                    "name": "批准文号",
+                    "col": "."
+                },
+                "drug_name": {
+                    "name": "产品名称"
+                },
+                "drug_name_en": {
+                    "name": "英文名称"
+                }
             }
-          },
-          "auth_num": {
-            "name": "批准文号",
-            "col": "."
-          },
-          "drug_name": {
-            "name": "产品名称"
-          },
-          "drug_name_en": {
-            "name": "英文名称"
-          }
         }
-      }
     }
+}
 ```
 
 - 通过rows, cells, title_column确定一个表格
@@ -380,7 +386,56 @@ Result:
 
 ![image-20230921103240151](assets/image-20230921103240151.png)
 
-DP2_id:32134845,字段名：REACH_Registration_Evaluation_Authorisation_and_Restriction_of_Chemicals_Regulation
+parse
+
+```json
+{
+    "REACH_Registration_Evaluation_Authorisation_and_Restriction_of_Chemicals_Regulation": {
+        "elements": {
+            "table": {
+                "rows": "//div[@class='dissProcessesWrapper']//div[@class='panel-group '][1]//div[@class='anothercustomBox']//li",
+                "cells": "./div/div",
+                "title_column": {
+                    "fields": {
+                        "dp2_id": {
+                            "col": "TASK_id"
+                        },
+                        "annex_iii": {
+                            "col": "./div",
+                            "name": "Annex III: criteria for 1 - 10 tonne registered substances"
+                        },
+                        "pre_registered_substances": {
+                            "col": "./div",
+                            "name": "Pre-registered substances"
+                        },
+                        "registered_substances": {
+                            "col": "./div",
+                            "name": "Registered substances factsheets"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+result
+
+```json
+{
+    "REACH_Registration_Evaluation_Authorisation_and_Restriction_of_Chemicals_Regulation": {
+        "table": {
+            "dp2_id": "32134845",
+            "annex_iii": "Substances predicted as likely to meet criteria for category 1A or 1B carcinogenicity, mutagenicity, or reproductive toxicity, or with dispersive or diffuse use(s) where predicted likely to meet any classification criterion for health or environmental hazards, or where there is a nanoform soluble in biological and environmental media.",
+            "pre_registered_substances": "Substances indicated, in 2009, as being intended to be registered by at least one company in the EEA.",
+            "registered_substances": "Substances which have been registered and can be placed on the EEA market by those companies with a valid registration."
+        }
+    }
+}
+```
+
+参考项目 DP2_id:32134845
 
 ##### **按第一行标题提取表格数据（列数可变，行数可变）**
 
@@ -425,41 +480,46 @@ DP2_id:32134845,字段名：REACH_Registration_Evaluation_Authorisation_and_Rest
 5. title_row为dict时，col指定标题行路径（要指定到具体标题名字的位置），fields指定每个字段的名字和相对路径，默认为”."
 6. fields中的设置方法与前相同，name指定标题的名字，需完全匹配，col指定相对路径, col_index指定时，则用这个序号，忽略name; 若无col_index时，根据name确定col_index
 
-Parse function:
+Parse
 
 ```json
-   "REACH_Registration_Evaluation_Authorisation_and_Restriction_of_Chemicals_Regulation": {
-      "elements": {
-        "list": {
-          "rows": "//div[@class='dissProcessesWrapper']//div[@class='panel-group '][1]//div[@class='anothercustomBox']//li",
-          "cells": "./div/div",
-          "title_row":"//div[@class='dissProcessesWrapper']//div[@class='panel-group '][1]//div[@class='anothercustomBox']//li/div/div[1]"
-          }
+{
+    "REACH_Registration_Evaluation_Authorisation_and_Restriction_of_Chemicals_Regulation": {
+        "elements": {
+            "list": {
+                "rows": "//div[@class='dissProcessesWrapper']//div[@class='panel-group '][1]//div[@class='anothercustomBox']//li",
+                "cells": "./div/div",
+                "title_row": "//div[@class='dissProcessesWrapper']//div[@class='panel-group '][1]//div[@class='anothercustomBox']//li/div/div[1]"
+            }
         }
-    },
+    }
+}
 ```
 
-Result:
+Result
 
 ```json
-"REACH_Registration_Evaluation_Authorisation_and_Restriction_of_Chemicals_Regulation": {
-    "list": [
-      {
-        "Annex III: criteria for 1 - 10 tonne registered substances": "Annex III: criteria for 1 - 10 tonne registered substances",
-        "Pre-registered substances": "Substances predicted as likely to meet criteria for category 1A or 1B carcinogenicity, mutagenicity, or reproductive toxicity, or with dispersive or diffuse use(s) where predicted likely to meet any classification criterion for health or environmental hazards, or where there is a nanoform soluble in biological and environmental media.",
-        "Registered substances factsheets": ""
-      },
-      {
-        "Annex III: criteria for 1 - 10 tonne registered substances": "Pre-registered substances",
-        "Pre-registered substances": "Substances indicated, in 2009, as being intended to be registered by at least one company in the EEA.",
-        "Registered substances factsheets": ""
-      },
-      {
-        "Annex III: criteria for 1 - 10 tonne registered substances": "Registered substances factsheets",
-        "Pre-registered substances": "Substances which have been registered and can be placed on the EEA market by those companies with a valid registration.",
-        "Registered substances factsheets": ""
-      }
-    ]
-  },
+{
+    "REACH_Registration_Evaluation_Authorisation_and_Restriction_of_Chemicals_Regulation": {
+        "list": [
+            {
+                "Annex III: criteria for 1 - 10 tonne registered substances": "Annex III: criteria for 1 - 10 tonne registered substances",
+                "Pre-registered substances": "Substances predicted as likely to meet criteria for category 1A or 1B carcinogenicity, mutagenicity, or reproductive toxicity, or with dispersive or diffuse use(s) where predicted likely to meet any classification criterion for health or environmental hazards, or where there is a nanoform soluble in biological and environmental media.",
+                "Registered substances factsheets": ""
+            },
+            {
+                "Annex III: criteria for 1 - 10 tonne registered substances": "Pre-registered substances",
+                "Pre-registered substances": "Substances indicated, in 2009, as being intended to be registered by at least one company in the EEA.",
+                "Registered substances factsheets": ""
+            },
+            {
+                "Annex III: criteria for 1 - 10 tonne registered substances": "Registered substances factsheets",
+                "Pre-registered substances": "Substances which have been registered and can be placed on the EEA market by those companies with a valid registration.",
+                "Registered substances factsheets": ""
+            }
+        ]
+    }
+}
 ```
 
+参考项目 DP2_id:32134845

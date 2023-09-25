@@ -22,20 +22,31 @@
   source
 
   ```html
-  <td><a href="/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=018916" title="Click to view HEPARIN SODIUM 5,000 UNITS IN SODIUM CHLORIDE 0.9% (HEPARIN SODIUM)">HEPARIN SODIUM 5,000 UNITS IN SODIUM CHLORIDE 0.9%<br />NDA   #018916</a></td>
+  <td>
+    <a
+      href="/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=018916"
+      title="Click to view HEPARIN SODIUM 5,000 UNITS IN SODIUM CHLORIDE 0.9% (HEPARIN SODIUM)"
+      >HEPARIN SODIUM 5,000 UNITS IN SODIUM CHLORIDE 0.9%<br/>NDA #018916
+    </a>
+  </td>
+  
   ```
-
+  
   提取药名和ID
 
   parse
 
   ```json
-  {"elements":{"drug_name":"//td/a/text()[following-sibling::br]",
-  "id": "//td/a/text()[preceding-sibling::br]"}}
+  {
+      "elements": {
+          "drug_name": "//td/a/text()[following-sibling::br]",
+          "id": "//td/a/text()[preceding-sibling::br]"
+      }
+  }
   ```
-
+  
   Result
-
+  
   ```json
   {
     "drug_name": "HEPARIN SODIUM 5,000 UNITS IN SODIUM CHLORIDE 0.9%",
@@ -64,25 +75,35 @@
   source
 
   ```html
-  <td><a href="/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=018916" title="Click to view HEPARIN SODIUM 5,000 UNITS IN SODIUM CHLORIDE 0.9% (HEPARIN SODIUM)">HEPARIN SODIUM 5,000 UNITS IN SODIUM CHLORIDE 0.9%<br />NDA   #018916</a></td>
+  <td>
+    <a
+      href="/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=018916"
+      title="Click to view HEPARIN SODIUM 5,000 UNITS IN SODIUM CHLORIDE 0.9% (HEPARIN SODIUM)"
+      >HEPARIN SODIUM 5,000 UNITS IN SODIUM CHLORIDE 0.9%<br/>NDA #018916
+    </a>
+  </td>
   ```
-
+  
   方法 index：
-
+  
   ```json
-  {"elements":{"drug_name": "//td/a/text()[1]",
-  "id": "//td/a/text()[2]"}}
+  {
+      "elements": {
+          "drug_name": "//td/a/text()[1]",
+          "id": "//td/a/text()[2]"
+      }
+  }
   ```
-
+  
   result
-
+  
   ```json
   {
     "drug_name": "HEPARIN SODIUM 5,000 UNITS IN SODIUM CHLORIDE 0.9%",
     "id": "NDA   #018916"
   }
   ```
-
+  
   
 
 ### 4. 文本匹配 
@@ -119,13 +140,21 @@ Source
 Parse
 
 ```json
-{"elements":{ "content":"//a[text()='百度搜索']"}}
+{
+    "elements": {
+        "content": "//a[text()='百度搜索']"
+    }
+}
 ```
 
 or
 
 ```json
-{"elements":{ "content":"//a[contains(text(),\"百度搜索\")]"}}
+{
+    "elements": {
+        "content": "//a[contains(text(),\"百度搜索\")]"
+    }
+}
 ```
 
 result
@@ -154,5 +183,5 @@ result
 
 - 多个条件组合使用：`//element[condition1 and condition2]/child::element[condition3]` 以上是一些常用的Xpath定位功能，可以根据具体需求灵活运用。
 
-[xpath_resource](https://devhints.io/xpath)
+xpath 参考网站[xpath_resource](https://devhints.io/xpath)
 

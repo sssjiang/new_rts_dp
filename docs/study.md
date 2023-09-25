@@ -4,13 +4,12 @@
 
 ```json
 {
-  "STU":"",
-  "exclude_workers":"",
-  "steps": 
-[
-  {},
-  {}
-]
+    "STU": "",
+    "exclude_workers": "",
+    "steps": [
+        {},
+        {}
+    ]
 }
 ```
 
@@ -32,37 +31,21 @@ steps为一个List结构，每个step按次序放在[]中
 
 ```json
 {
-
- "project_name": "NMPA_Drug_Law_PageNum",
-
- "url": "http://www.nmpa.gov.cn/WS04/CL2170/",
-
- "type": "one-off",
-
- "priority": 0,
-
- "fetch_method": "splash",
-
- "method": "GET",
-
- "status": 1,
-
- "charset": "UTF-8",
-
- "charact_string_start": "药品法规文件",
-
- "charact_string_end": "国家药品监督管理局",
-
- "pf_id": 172,
-
- "lua_id": 90,
-
- "data_out": {
-
-  "jpath": "{TotalPageNum:TotalPages}"
-
- }
-
+    "project_name": "NMPA_Drug_Law_PageNum",
+    "url": "http://www.nmpa.gov.cn/WS04/CL2170/",
+    "type": "one-off",
+    "priority": 0,
+    "fetch_method": "splash",
+    "method": "GET",
+    "status": 1,
+    "charset": "UTF-8",
+    "charact_string_start": "药品法规文件",
+    "charact_string_end": "国家药品监督管理局",
+    "pf_id": 172,
+    "lua_id": 90,
+    "data_out": {
+        "jpath": "{TotalPageNum:TotalPages}"
+    }
 }
 ```
 
@@ -71,7 +54,6 @@ steps为一个List结构，每个step按次序放在[]中
 ```json
 {
   "data_in":None,
-  
   "study_id": None,
   "study_name": None,
   "project_name": None,
@@ -143,9 +125,11 @@ Task的名称，用来区别Task,同一网域下同类型的Task应该取一样�
 extra_data 可以用来保存多step时需要的变量
 
 ```json
-"extra_data": {
+{
+    "extra_data": {
         "keyword": "{keyword}"
-      }
+    }
+}
 ```
 
 
@@ -159,14 +143,16 @@ extra_data 可以用来保存多step时需要的变量
 **示例1:**
 
 ```json
-"url":{
-  "pattern": "http://www.nmpa.gov.cn/WS04/CL2170/index(*).html",
-  "iteration": {
-    "first": "",
-    "start": 1,
-    "stop": "{TotalPageNum}-1",
-    "format": "_{}"
-  }
+{
+    "url": {
+        "pattern": "http://www.nmpa.gov.cn/WS04/CL2170/index(*).html",
+        "iteration": {
+            "first": "",
+            "start": 1,
+            "stop": "{TotalPageNum}-1",
+            "format": "_{}"
+        }
+    }
 }
 ```
 
@@ -189,15 +175,17 @@ pattern的参数中必须含有(*)，这里为系列地址中要改变的部分�
 **示例2:**
 
 ```json
-"url": {
+{
+    "url": {
         "pattern": "http://www.nmpa.gov.cn/WS04/CL2170/index(*).html?offset={offset}",
         "iteration": {
-          "first": "",
-          "start": 1,
-          "stop": "{TotalPageNum}-1",
-          "format": "_{}”,
-          “offset”:”(i-1)*10"
+            "first": "",
+            "start": 1,
+            "stop": "{TotalPageNum}-1",
+            "format": "_{}",
+          "offset":"(i-1)*10"
         }
+    }
 }
 ```
 
@@ -210,7 +198,7 @@ pattern的参数中必须含有(*)，这里为系列地址中要改变的部分�
 当link为数组
 
 ```json
- "url": "{link}"
+ {"url": "{link}"}
 ```
 
 此时不需要传入页码参数
@@ -403,25 +391,25 @@ Task的启动状态，初始为准备启动，启动状态由系统自行设定�
 若要对传到下一步的数据进行修改，可用data_out来配置。
 
 ```json
-data_out的结构如下：
-
- "data_out": {
+{
+    "data_out": {
         "jpath": "",
         "api": {
-          "url": "http://api2.drugsea.cn/dp2/mongo/save",
-          "table": "china_manufacture_products",
-          "where": {
-            "uniqueId": "{dp2_id}"
-          },
-          "data": {
-            "dp2_id": "{dp2_id}",
-            "drug_name": "{drug_name}",
-            "company": "{company}",
-            "attachments": "{attachments}",
-            "drug_reference": "{drug_reference}"
-          }
+            "url": "http://api2.drugsea.cn/dp2/mongo/save",
+            "table": "china_manufacture_products",
+            "where": {
+                "uniqueId": "{dp2_id}"
+            },
+            "data": {
+                "dp2_id": "{dp2_id}",
+                "drug_name": "{drug_name}",
+                "company": "{company}",
+                "attachments": "{attachments}",
+                "drug_reference": "{drug_reference}"
+            }
         }
-      },
+    }
+}
 ```
 
 [Study.data_out中支持的关键字](study.data_out.md)
@@ -431,16 +419,16 @@ data_out的结构如下：
 负责对传到这一步的数据进行修饰，然后再转给任务管理程序。
 
 ```json
-data_in的结构如下：
 {
-      "data_in": {
+    "data_in": {
         "data_for_test": [
-          {
-            "link": "http://www.topfond.com/product/1.html",
-            "drug_name": "硫酸阿米卡星注射液"
-          }
+            {
+                "link": "http://www.topfond.com/product/1.html",
+                "drug_name": "硫酸阿米卡星注射液"
+            }
         ]
-      },
+    }
+}
 ```
 
 [DP2_study实例](http://dp2.labqr.com/e/dp2/study?offset=0&order_by=&direction=&tnum=&id=&study_name=company.tfyy.drugs&status=&status_msg=&study_note=&study_content=)
