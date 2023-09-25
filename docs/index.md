@@ -1,5 +1,3 @@
-{!README.md!}
-
 # Welcome to DP2's documentation!
 
 Distributed Web Scraping System (DP2)是一种网络信息提取整理服务平台，为广大用户群体提供方便、自动的网络信息提取服务，帮助用户群体大量处理网络数据。
@@ -11,3 +9,9 @@ Distributed Web Scraping System (DP2)是一种网络信息提取整理服务平�
 [1.study_operation](study.md)
 
 [2.Jexter_operation](Jexter.md)
+
+[3.xpath_operation](Xpath.md)
+
+[4.jq_jpath_operatioin](jq_jmespath.md)
+
+[5.table_extract_operation](Jexter.table.md)
