@@ -1,6 +1,50 @@
 # Xpath
 
+### 1. 选择节点 
 
+- 通过元素名称选择节点：`//element`
+- 通过元素名称和属性选择节点：`//element[@attribute='value']`
+- 通过元素名称和多个属性选择节点：`//element[@attribute1='value1' and @attribute2='value2']`
+-  通过元素名称和属性值包含特定字符串选择节点：`//element[contains(@attribute, 'value')]` 
+
+### 2. 节点关系 
+
+- 选择父节点：`/parent::element` 
+- 选择子节点：`/child::element` 
+- 选择上一个兄弟节点：`/preceding-sibling::element` 
+- 选择下一个兄弟节点：`/following-sibling::element` 
+
+### 3. 位置选择
+
+- 选择第n个节点：`(//element)[n]` 
+
+- 选择第一个节点：`(//element)[1]`
+- 选择最后一个节点：`(//element)[last()]` 
+- 选择前n个节点：`(//element)[position() <= n]` 
+- 选择最后n个节点：`(//element)[position() > last() - n]` 
+
+### 4. 文本匹配 
+
+- 选择包含特定文本的节点：`//element[text()='text']` 
+- 选择文本以特定字符串开头的节点：`//element[starts-with(text(), 'text')]` 
+- 选择文本以特定字符串结尾的节点：`//element[ends-with(text(), 'text')]` 
+- 选择文本包含特定字符串的节点：`//element[contains(text(), 'text')]` 
+
+### 5. 数值匹配 
+
+- 选择属性值等于特定数值的节点：`//element[@attribute=number]` 
+- 选择属性值大于特定数值的节点：`//element[@attribute>number]` 
+- 选择属性值小于特定数值的节点：`//element[@attribute=number and @attribute<=number]` 
+
+### 6. 逻辑运算
+
+- 选择满足多个条件的节点：`//element[condition1 and condition2]` 
+- 选择满足任意一个条件的节点：`//element[condition1 or condition2]` 
+- 选择不满足条件的节点：`//element[not(condition)]`
+
+ ### 7. 组合使用 
+
+- 多个条件组合使用：`//element[condition1 and condition2]/child::element[condition3]` 以上是一些常用的Xpath定位功能，可以根据具体需求灵活运用。
 
 ## xpath定位中starts-with、contains和text()的用法
 

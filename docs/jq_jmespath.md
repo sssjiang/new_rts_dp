@@ -2,29 +2,55 @@
 
 # jq && jmespath tips
 
-## 字符串拼接：join(',',['aa','bb'])
+## 字符串拼接：
 
-Parse Function中常用的JSON操作
+### jmespath
 
-### `+=`
+Source
+
+```json
+{
+  "firstName": "John",
+  "lastName": "Doe"
+}
+```
+
+parse
+
+```json
+join(' ', [firstName, lastName])
+
+```
+
+result
+
+```json
+"John Doe"
+```
+
+
+
+### jq
+
+#### `+=`
 
 （1）给子元素数字中每个element增加一个父元素中的值，比如给data.value中每个元素增加一个dp2_id的key：关键是+=
 
  ![img](assets/edd637da-f544-485c-a6ad-89832b4c9d11.png)
 
-### `map`
+#### `map`
 
 (2) 将数组中一个元素当做一个变量的值: 数组map以后，可以针对每个元素操作
 
 ![img](assets/795c70a1-5663-4283-b147-184aa740bcdd.png)
 
-### `()`
+#### `()`
 
 将多个同级元素与字符串拼接后，形成一个新的值：用（）将多个值或字串链接的算式括起来
 
 ![img](assets/e10380d5-13d5-415c-93e3-e89654e83256.png)
 
-### `Select`
+#### `Select`
 
 用select筛选数组中的元素，然后对元素中字段进行条件判断，然后拼接
 
@@ -36,7 +62,7 @@ Parse Function中常用的JSON操作
 
 在线教程：https://stedolan.github.io/jq/tutorial/
 
-## parse json string
+## 解析json string
 
 ```json
 "[{\"herb_cn_name\":\"\\u77ee\\u5730\\u8336\",\"herb_pinyin\":\"Aidicha\",\"herb_en_name\":\"Ardisiae Japonicae Herba\",\"child_cn_name\":\"\\u6b62\\u54b3\\u5e73\\u5598\\u836f\",\"child_en_name\":\"Antitussive Antiasthmetics\"}]"
@@ -68,7 +94,7 @@ Result:
 
 从网页中提取JSON的parse function的不同写法：
 
-#### Jmespath：
+### Jmespath：
 
 ```json
 {
@@ -96,7 +122,7 @@ Result:
 }
 ```
 
-#### Jq:
+### Jq:
 
 ```json
 {
