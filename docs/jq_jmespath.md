@@ -38,8 +38,6 @@ result
 "John Doe"
 ```
 
-
-
 ### jq
 
 #### `+=`
