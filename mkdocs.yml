@@ -1,7 +1,13 @@
 site_name: new
 theme:
   name: readthedocs
-  highlightjs: true
+  highlightjs:
+    style: github
+    css: true
+    line_number: true
+    auto_detect: true
+    hl_lines: ""
+    border: "1px solid #ccc"
 plugins:
   - search
   - mkdocstrings:
@@ -11,10 +17,23 @@ plugins:
           options:
             docstring_style: sphinx
 markdown_extensions:
+  - pymdownx.highlight:
+      use_pygments: true
+      # linenums: true
+      # css_class: "highlight"
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
   - pymdownx.superfences:
       custom_fences:
-        - name: mermaid
-          class: mermaid
-          format: !!python/name:pymdownx.superfences.fence_code_format
-
+        - name: "narrow"
+          class: "narrow"
+          format: !!python/name:pymdownx.superfences.fence_div_format
+          kwargs:
+            lang_prefix: "language-"
+            css_class: "highlight narrow"
   - admonition
+
+# extra_css:
+#   - css/custom.css
+extra_javascript:
+  - js/copy-button.js

@@ -1,5 +1,21 @@
 # Jexter
 
+## 规范
+
+### detail页面解析字段命令规范
+
+#### company
+
+##### 药品
+
+ ["dp2_id","company","drug_name","drug_reference","attachments"] "auth_num" 有则提取。
+
+##### 新闻
+
+["title","date","content","attachments"]
+
+
+
 ## parent
 
 

@@ -47,7 +47,7 @@ JSON数据提取与转化:jmespath (默认), jq
 
 
 - data的字段中设置 field="DELETE" 可以删除这个字段
-- type默认是merge时，可以不写；若要替换替换设置type=update
+- type默认是merge时（create/add/modify），可以不写；若要替换设置type=update（replace）
 - Table:通常与study中project_name相同
 
 #### 第2种写法
