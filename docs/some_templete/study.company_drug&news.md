@@ -1,4 +1,4 @@
-# Study for company
+# Study for company templete
 
 ```json
 {
@@ -174,7 +174,7 @@ Extra_data 可以将上一步的输出传递到下一步中
 
 
 
-## list
+## list_step
 
 ### method get
 
@@ -286,7 +286,7 @@ Extra_data 可以将上一步的输出传递到下一步中
 
 循环变量iterate`(*)`放在data中 作为post请求页面页数
 
-## detail
+## detail_step
 
 ```json
  {
@@ -398,7 +398,7 @@ Extra_data 可以将上一步的输出传递到下一步中
 
  
 
-## attachment
+## attachment_step
 
 ```json
    {

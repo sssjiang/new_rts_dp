@@ -1,6 +1,6 @@
 # Jexter for company templete
 
-## ***category***页面
+## **category**页面
 
 ```json
 {
@@ -26,7 +26,7 @@
 }
 ```
 
-## ***totalpage***页面
+## **totalpage**页面
 
 ### **method**1
 
@@ -64,7 +64,7 @@
 }
 ```
 
-## list
+## list页面
 
 ### 直接定位所有link
 
@@ -113,7 +113,7 @@
 }
 ```
 
-## detail
+## detail页面
 
 ### drug页面
 
