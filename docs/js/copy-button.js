@@ -5,7 +5,13 @@ document.querySelectorAll('pre > code').forEach(function (codeBlock) {
     copyButton.type = 'button';
     copyButton.innerText = 'Copy';
 
+    // Set button position to top right corner
+    copyButton.style.position = 'absolute';
+    copyButton.style.top = '0';
+    copyButton.style.right = '0';
+
     // Append copy button to code block
+    codeBlock.parentNode.style.position = 'relative';
     codeBlock.parentNode.appendChild(copyButton);
 
     // Add click event listener to copy button

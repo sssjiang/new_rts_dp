@@ -1,7 +1,7 @@
 site_name: new
 theme:
-  #name: readthedocs
-  name: material
+  name: readthedocs
+  #name: material
   highlightjs:
     style: github
     css: true
