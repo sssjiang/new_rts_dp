@@ -1,16 +1,16 @@
 
 
-# jq && jmespath tips
+# jq && JMESPath tips
 
 [jq在线测试地址](https://jqplay.org/)
 
-[jmespath在线测试地址](https://play.jmespath.org/)
+[JMESPath在线测试地址](https://play.JMESPath.org/)
 
 [jq在线教程](https://stedolan.github.io/jq/tutorial/)
 
-Jq : `.` 获取所有字段
+jq : `.` 获取所有字段
 
-jmespath:获取所有字段方式如下
+JMESPath:获取所有字段方式如下
 
 ```jpath
 "jpath": ""
@@ -20,7 +20,7 @@ jmespath:获取所有字段方式如下
 
 ## 字符串拼接
 
-### jmespath
+### JMESPath
 
 Source
 
@@ -605,7 +605,7 @@ Result:
 }
 ```
 
-#### Jq
+#### jq
 
 ```json
 {

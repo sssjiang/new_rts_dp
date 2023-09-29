@@ -2,13 +2,13 @@
 
 ```json
 {
-  "STU": "company.jmjtyygs.drugs",
+  "STU": "company.<厂商药品名字母缩写>.drugs",
   "excluded_workers": [],
   "steps": [...]
 	}
 ```
 
-替换处：`"url"`  `"charset"`
+替换处：`"url"`  `"charset"` `"STU"`（保证STU唯一）
 
 ## category_step
 
@@ -321,7 +321,7 @@ Extra_data 可以将上一步的输出传递到下一步中
 
 解析结果
 
-写入数据库
+#### 写入数据库:drug页面
 
 ```json
 {
@@ -390,6 +390,20 @@ Extra_data 可以将上一步的输出传递到下一步中
     },
     "row_idx" : NumberInt(0)
 }
+```
+
+#### 写入数据库:news页面
+
+写入数据库为news时字段如下：
+
+```json
+ "data": {
+            "dp2_id": "{dp2_id}",
+            "title": "{title}",
+            "date": "{date}",
+            "attachments": "{attachments}",
+            "content": "{content}"
+          }
 ```
 
 `"_id"`字段自动生成
