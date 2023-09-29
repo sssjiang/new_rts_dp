@@ -299,7 +299,18 @@ Priority (higher first and 10=run once)
 | ------------- | ------ | ------ |
 | 请求的 cookie | 非必须 | None   |
 
-是否添加 cookie，有“with cookies”和“without cookies”两种，若选择“with cookies”,设置页面会增加一处空白的“cookies”填写栏
+```json
+{
+  "cookies": {
+        "headers": {
+          "content_type": "application/json",
+          "Referer": "http://www.shaxizhiyao.com/products.html"
+        }
+      },
+}
+```
+
+
 
 ### `through_proxy`
 

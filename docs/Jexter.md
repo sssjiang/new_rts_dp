@@ -422,7 +422,7 @@ result
 
 优先级 `callback > function > default > data_out`
 
-###### `callback`
+#### `callback`
 
 | 可选输入     | 说明                                                         |   输出   |
 | ------------ | ------------------------------------------------------------ | :------: |
@@ -436,8 +436,6 @@ result
 | absolute_url | 将相对地址转化为绝对地址                                     |          |
 
 #### `function`
-
-
 
 ```json
 {
@@ -454,67 +452,115 @@ result
 }
 ```
 
-  - function有三个参数：regexp, return, type
+  - function有三个参数：regexp, return, type,html_extractor
 
-    ###### `callback`
+示例
 
-    | function参数 | 说明                                                         | 输入         |
-    | ------------ | ------------------------------------------------------------ | ------------ |
-    | regexp       | 可以通过()对部分匹配的内容分组，然后在return中按序号（从0开始）自由组合 | 正则表达式   |
-    | return       | 除支持()匹配的序号外，还可以为其他字符串，返回的结果是按数组指定的次序拼接的结果 | 数组         |
-    | type         | type默认为array, 返回list；若为’string’或其他则返回list直接拼接以后的字串 | string/array |
+Source:[参考源代码](http://dp2.labqr.com/e/web/news?project_name=company.gdsxzy.drugs.list&exact=1)
 
-    Source
+Parse(function(regexp,type,html_extractor))
 
-    ```html
-    <p class="copyright">
-      Copyright © 2010-2021 苏州二叶制药有限公司
-      <a class="beian" href="http://beian.miit.gov.cn">苏ICP备18057909</a>
-      技术支持：<a href="http://www.qiankunquan.net">乾坤圈™</a>
-      <a href="http://www.szsgsj.gov.cn">苏州工商局</a>
-    </p>
-    ```
+```json
+{
+  "elements": {
+    "link": {
+      "col": "//div[@data-key='html']",
+      "function": {
+        "regexp": "(.+)",
+        "type": "string",
+        "html_extractor": {
+          "total_rows": "//div[@class='p_name titleSet pc']",
+          "elements": {
+            "link": {
+              "col": "./a/@href",
+              "type": "string",
+              "prefix": "http://www.shaxizhiyao.com/"
+            }
+          }
+        }
+      }
+    }
+  },
+  "data_out": {
+    "jq": ".link"
+  }
+}
+```
 
-    parse
+result
 
-    ```json
-    {
-        "elements": {
-            "company": {
-                "col": "//p[@class='copyright']",
-                "function": {
-                    "regexp": "(\\w+)苏",
-                    "type": "string",
-                    "return": [
-                        0
-                    ]
-                }
+```json
+[
+  {
+    "link": "http://www.shaxizhiyao.com/pro_details_5238527.html"
+  },
+  {
+    "link": "http://www.shaxizhiyao.com/pro_details_1653595.html"
+  }
+]
+```
+
+
+
+#### `callback`
+
+| function参数 | 说明                                                         | 输入         |
+| ------------ | ------------------------------------------------------------ | ------------ |
+| regexp       | 可以通过()对部分匹配的内容分组，然后在return中按序号（从0开始）自由组合 | 正则表达式   |
+| return       | 除支持()匹配的序号外，还可以为其他字符串，返回的结果是按数组指定的次序拼接的结果 | 数组         |
+| type         | type默认为array, 返回list；若为’string’或其他则返回list直接拼接以后的字串 | string/array |
+
+Source
+
+```html
+<p class="copyright">
+  Copyright © 2010-2021 苏州二叶制药有限公司
+  <a class="beian" href="http://beian.miit.gov.cn">苏ICP备18057909</a>
+  技术支持：<a href="http://www.qiankunquan.net">乾坤圈™</a>
+  <a href="http://www.szsgsj.gov.cn">苏州工商局</a>
+</p>
+```
+
+parse
+
+```json
+{
+    "elements": {
+        "company": {
+            "col": "//p[@class='copyright']",
+            "function": {
+                "regexp": "(\\w+)苏",
+                "type": "string",
+                "return": [
+                    0
+                ]
             }
         }
     }
-    ```
+}
+```
 
-    result
+result
 
-    ```json
-    {
-      "company": "苏州二叶制药有限公司"
-    }
-    ```
+```json
+{
+  "company": "苏州二叶制药有限公司"
+}
+```
 
-    修改type为array
+修改type为array
 
-    result
+result
 
-    ```json
-    {
-      "company": [
-        "苏州二苏叶制药有限公司"
-      ]
-    }
-    ```
+```json
+{
+  "company": [
+    "苏州二苏叶制药有限公司"
+  ]
+}
+```
 
-    
+
 
 #### `default`
 

@@ -1,8 +1,8 @@
 # study.data_out
 
-JSON数据提取与转化:jmespath (默认), jq
+JSON数据提取与转化:JMESPath (默认), jq
 
-[jq_and_jmespath_example](jq_jmespath.md)
+[jq_and_JMESPath_example](jq_JMESPath.md)
 
 ## 数据通过api保存到数据库
 
