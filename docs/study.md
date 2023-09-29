@@ -1,6 +1,6 @@
 # study
 
-![image-20230929111341107](assets/image-20230929111341107.png)
+![image-20230929115408353](assets/image-20230929115408353.png)
 
 ```json
 {
