@@ -1,5 +1,7 @@
 # study
 
+![image-20230929111341107](assets/image-20230929111341107.png)
+
 ```json
 {
   "STU": "",
