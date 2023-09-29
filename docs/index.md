@@ -16,4 +16,4 @@ Distributed Web Scraping System (DP2)是一种网络信息提取整理服务平�
 
 [5.table_extract_operation](Jexter.table.md)
 
-![image-20230929105404088](assets/image-20230929105404088.png)
+![image-20230929111009448](assets/image-20230929111009448.png)
