@@ -7,9 +7,9 @@ if [ ! -d 'venv' ];then
     python3 -m venv venv
 fi
 source venv/bin/activate
+cd /home/ubuntu/sop_probot_documents/app
 
 install() {
-    cd /home/ubuntu/sop_probot_documents/app
     pip install -r docs/requirements.txt
 }
 
