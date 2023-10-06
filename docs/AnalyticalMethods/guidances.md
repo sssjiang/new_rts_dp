@@ -1,2 +1,4 @@
-[1. FDA: Bioanalytical Method Validation Guidance for Industry](https://www.fda.gov/files/drugs/published/Bioanalytical-Method-Validation-Guidance-for-Industry.pdf)
-[2. Bioanalytical method validation: An updated review](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3658022/)
+[1. FDA: Bioanalytical Method Validation Guidance for Industry](ref1.pdf)
+
+[2. Bioanalytical method validation: An updated review](ref2.pdf)
+
