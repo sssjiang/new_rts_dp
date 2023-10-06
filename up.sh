@@ -12,7 +12,7 @@ find . -name "*.sh" -exec chmod +x {} +
 git add -A
 git commit -m $M
 
-# git pull
+git pull
 
 git push -u origin main 
 
