@@ -9,7 +9,8 @@ nav:
   - DP2:
     - Introduction: 'DP2/index.md'
     - Study: 'DP2/study.md'
-  - Analytical Method Validation: 'Analytical_Method_Validation/index.md'
+  - Analytical Method Validation:
+    - Introduction: 'Analytical_Method_Validation/index.md'
 theme:
   name: readthedocs
   highlightjs:
