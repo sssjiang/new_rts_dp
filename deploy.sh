@@ -1,6 +1,8 @@
 mkdir -p /home/ubuntu/sop_probot_documents/pythonenv
 cd /home/ubuntu/sop_probot_documents/pythonenv
-python3 -m venv env
+if [ ! -d 'venv' ];then
+    python3 -m venv env
+fi
 source env/bin/activate
 cd /home/ubuntu/sop_probot_documents
 pip install -r requirements.txt
