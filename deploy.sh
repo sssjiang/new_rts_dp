@@ -10,7 +10,7 @@ source venv/bin/activate
 cd /home/ubuntu/sop_probot_documents/app
 
 install() {
-    pip install -r docs/requirements.txt
+    pip install -r conf/requirements.txt
 }
 
 usage() {
