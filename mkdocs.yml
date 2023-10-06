@@ -9,6 +9,7 @@ nav:
   - DP2:
     - Index: 'DP2/index.md'
     - Study: 'DP2/study.md'
+    - Jextor: 'DP2/Jexter.md'
   - Analytical Method Validation:
     - Index: 'Analytical_Method_Validation/index.md'
     - Guidance: 'Analytical_Method_Validation/guidances.md'
