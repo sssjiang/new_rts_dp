@@ -4,12 +4,12 @@
 
 目录：
 
-[1.DP2](DP2/index.md)
+[1. DP2](DP2/index.md)
 
-[2.Analytical Method Development](AnalyticalMethods/index.md)
+[2. Analytical Method Development](AnalyticalMethods/index.md)
 
-[3.Animal Experiments](AnimalExperiments/index.md)
+[3. Animal Experiments](AnimalExperiments/index.md)
 
-[4.Cell Experiments](CellsExperiments/index.md)
+[4. Cell Experiments](CellsExperiments/index.md)
 
-[5.In-Vitro System](in-VitroSystem/index.md)
+[5. In-Vitro System](in-VitroSystem/index.md)

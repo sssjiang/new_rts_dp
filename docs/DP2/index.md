@@ -1,4 +1,4 @@
-# Welcome to Prof. ZUO Group's Standard Operating Procedure!
+# DP2教程
 
 Distributed Web Scraping System (DP2)是一种网络信息提取整理服务平台，为广大用户群体提供方便、自动的网络信息提取服务，帮助用户群体大量处理网络数据。
 
