@@ -6,18 +6,30 @@ cd /home/ubuntu/sop_probot_documents
 pip install -r requirements.txt
 pip install -r docs/requirements.txt
 ACTION=$1
-restart() {
+start() {   
+    echo "Start..."
+    mkdocs serve -a 0.0.0.0:8000 > output.log 2>&1 &
+}
+stop() {
     echo "stop..."
     pkill -f "mkdocs serve"
-    mkdocs serve -a 0.0.0.0:8000 > output.log 2>&1 &
-    echo "Start..."
+}
+
+restart() {
+    echo "restart..."
+    stop
+    start
 }
 case "$ACTION" in
-    restart)
-        restart
+    start)
+        start
     ;;
-    *)
-        restart
+    stop)
+        stop
+    ;;
+    restart)
+        stop
+        start
     ;;
 esac
 
