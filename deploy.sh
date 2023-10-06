@@ -1,10 +1,10 @@
-mkdir -p /home/ubuntu/sop_probot_documents/pythonenv
-cd /home/ubuntu/sop_probot_documents/pythonenv
-if [ ! -d 'venv' ];then
-    python3 -m venv env
-fi
-source env/bin/activate
+mkdir -p /home/ubuntu/sop_probot_documents
 cd /home/ubuntu/sop_probot_documents
+if [ ! -d 'venv' ];then
+    python3 -m venv venv
+fi
+source venv/bin/activate
+cd /home/ubuntu/sop_probot_documents/app
 pip install -r requirements.txt
 pip install -r docs/requirements.txt
 ACTION=$1
