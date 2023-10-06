@@ -23,17 +23,19 @@ usage() {
 start() {   
     echo "Start..."
     mkdocs serve -a 0.0.0.0:8000 > output.log 2>&1 &
+    echo "Start Done"
 }
 stop() {
     echo "Stop..."
     pkill -f "mkdocs serve"
-    echo "Stop done"
+    echo "Stop Done"
 }
 
 restart() {
-    echo "restart..."
+    echo "Restart..."
     stop
     start
+    echo "Restart Done"
 }
 case "$ACTION" in
     start)
