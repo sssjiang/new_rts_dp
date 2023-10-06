@@ -37,6 +37,3 @@ case "$ACTION" in
     ;;
 esac
 
-deactivate
-
-exit 0
