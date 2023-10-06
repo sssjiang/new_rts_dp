@@ -12,7 +12,8 @@ find . -name "*.sh" -exec chmod +x {} +
 git add -A
 git commit -m $M
 
-git pull
+git fetch -u origin main
+git merge --no-edit
 
 git push -u origin main 
 
