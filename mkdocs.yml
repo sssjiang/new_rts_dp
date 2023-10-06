@@ -50,6 +50,12 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.snippets
   - admonition
+  - toc:
+      toc_depth: 3 #目录深度，默认6，0则隐藏
+      title: On this page  #默认值，自动获取
+      permalink: true   #每个标题的末尾添加段落符号锚链接，默认false
+      permalink: ⚓︎  #每个标题的末尾添加自定义符号锚链接
+      permalink_title: Anchor link to this section for reference #在悬停时显示并由屏幕阅读器阅读的锚链接的标题
 # extra_css:
 #   - css/custom.css
 # extra_javascript:
