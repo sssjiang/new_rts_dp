@@ -1,7 +1,6 @@
-site_name: new
+site_name: SOPs of Prof. ZUO Group
 theme:
   name: readthedocs
-  #name: material
   highlightjs:
     style: github
     css: true
