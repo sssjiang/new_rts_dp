@@ -13,6 +13,12 @@ nav:
   - Analytical Method Validation:
       - Index: "Analytical_Method_Validation/index.md"
       - Guidance: "Analytical_Method_Validation/guidances.md"
+  - Animal Experiments:
+      - Index: "Animal_Experiments/index.md"
+  - Cell Experiments:
+      - Index: "Cell_Experiments/index.md"
+  - In-Vitro System:
+      - Index: "In-Vitro_System/index.md"
 theme:
   name: material
   #name: readthedocs
