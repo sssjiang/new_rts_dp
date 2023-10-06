@@ -6,7 +6,7 @@ site_author: SOP
 copyright: CUHK
 nav:
   - Introduction: 'index.md'
-  - DP2:
+  - DP2: 'DP2/index.md'
     - Introduction: 'DP2/index.md'
     - Study: 'DP2/study.md'
   - Analytical Method Validation:
