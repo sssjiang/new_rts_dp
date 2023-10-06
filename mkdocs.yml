@@ -1,4 +1,12 @@
 site_name: SOPs of Prof. ZUO Group
+repo_url: https://github.com/sssjiang/new_rts_dp
+repo_name: GitHub
+site_author: SOP
+copyright: CUHK
+nav:
+  - Introduction: 'index.md'
+  - 'about.md'
+  - 'Issue Tracker': 'https://example.com/'
 theme:
   name: readthedocs
   highlightjs:
