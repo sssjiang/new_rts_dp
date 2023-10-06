@@ -5,5 +5,5 @@ source env/bin/activate
 cd /home/admin/sop_probot_documents
 pip install -r requirements.txt
 pip install -r docs/requirements.txt
-mkdocs serve
+mkdocs serve -a 0.0.0.0:8000
 
