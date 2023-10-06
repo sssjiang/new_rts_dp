@@ -3,7 +3,7 @@ site_url: http://docs.labqr.com/
 repo_url: https://github.com/sssjiang/new_rts_dp
 repo_name: GitHub
 site_author: SOP
-copyright: Copyright Reserved @2023 CUHK
+copyright: Copyright Reserved@2023 CUHK
 nav:
   - Home: "index.md"
   - DP2:
