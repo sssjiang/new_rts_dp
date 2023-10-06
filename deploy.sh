@@ -2,7 +2,6 @@
 
 set -e
 
-mkdir -p /home/ubuntu/sop_probot_documents
 cd /home/ubuntu/sop_probot_documents
 if [ ! -d 'venv' ];then
     python3 -m venv venv
