@@ -1,12 +1,13 @@
 site_name: SOPs of Prof. ZUO Group
+site_url: http://docs.labqr.com/
 repo_url: https://github.com/sssjiang/new_rts_dp
 repo_name: GitHub
 site_author: SOP
 copyright: CUHK
 nav:
   - Introduction: 'index.md'
-  - 'about.md'
-  - 'Issue Tracker': 'https://example.com/'
+  - DP2: 'DP2/index.md'
+  - Analytical Method Validation: 'Analytical_Method_Validation/index.md'
 theme:
   name: readthedocs
   highlightjs:
