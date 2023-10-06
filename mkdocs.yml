@@ -5,16 +5,17 @@ repo_name: GitHub
 site_author: SOP
 copyright: Copyright Reserved @2023 CUHK
 nav:
-  - Home: 'index.md'
+  - Home: "index.md"
   - DP2:
-    - Index: 'DP2/index.md'
-    - Study: 'DP2/study.md'
-    - Jextor: 'DP2/Jexter.md'
+      - Index: "DP2/index.md"
+      - Study: "DP2/study.md"
+      - Jextor: "DP2/Jexter.md"
   - Analytical Method Validation:
-    - Index: 'Analytical_Method_Validation/index.md'
-    - Guidance: 'Analytical_Method_Validation/guidances.md'
+      - Index: "Analytical_Method_Validation/index.md"
+      - Guidance: "Analytical_Method_Validation/guidances.md"
 theme:
-  name: readthedocs
+  name: material
+  #name: readthedocs
   highlightjs:
     style: github
     css: true
