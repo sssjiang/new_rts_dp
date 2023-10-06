@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -e
-
 ACTION=$1
 
 cd /home/ubuntu/sop_probot_documents
@@ -9,11 +7,11 @@ if [ ! -d 'venv' ];then
     python3 -m venv venv
 fi
 source venv/bin/activate
-cd /home/ubuntu/sop_probot_documents/app
 
-if [ "$ACTION" == "restart" ];then
+install() {
+    cd /home/ubuntu/sop_probot_documents/app
     pip install -r docs/requirements.txt
-fi
+}
 
 usage() {
     echo "Usage: $PROG_NAME {start|stop|restart}"
@@ -30,7 +28,6 @@ stop() {
     pkill -f "mkdocs serve"
     echo "Stop Done"
 }
-
 restart() {
     echo "Restart..."
     stop
@@ -45,6 +42,11 @@ case "$ACTION" in
         stop
     ;;
     restart)
+        stop
+        start
+    ;;
+    install)
+        install
         stop
         start
     ;;
