@@ -1,3 +1,5 @@
+#!/bin/bash
+
 mkdir -p /home/ubuntu/sop_probot_documents
 cd /home/ubuntu/sop_probot_documents
 if [ ! -d 'venv' ];then
