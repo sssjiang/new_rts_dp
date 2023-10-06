@@ -8,7 +8,6 @@ if [ ! -d 'venv' ];then
 fi
 source venv/bin/activate
 cd /home/ubuntu/sop_probot_documents/app
-pip install -r requirements.txt
 pip install -r docs/requirements.txt
 ACTION=$1
 start() {   

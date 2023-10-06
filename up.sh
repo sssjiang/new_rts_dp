@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+#set -e
 M=$1
 if [ "$M" == "" ];then
     M="up"
@@ -11,5 +11,8 @@ find . -name "*.sh" -exec chmod +x {} +
 
 git add -A
 git commit -m $M
+
+# git pull
+
 git push -u origin main 
 
