@@ -59,3 +59,8 @@ markdown_extensions:
 #   - css/custom.css
 # extra_javascript:
 #   - js/copy-button.js
+- pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid-experimental
+          format: !!python/name:pymdownx.superfences.fence_code_format
