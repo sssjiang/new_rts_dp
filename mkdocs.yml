@@ -5,12 +5,13 @@ repo_name: GitHub
 site_author: SOP
 copyright: Copyright Reserved @2023 CUHK
 nav:
-  - Introduction: 'index.md'
+  - Home: 'index.md'
   - DP2:
-    - Introduction: 'DP2/index.md'
+    - Index: 'DP2/index.md'
     - Study: 'DP2/study.md'
   - Analytical Method Validation:
-    - Introduction: 'Analytical_Method_Validation/index.md'
+    - Index: 'Analytical_Method_Validation/index.md'
+    - Guidance: 'Analytical_Method_Validation/guidances.md'
 theme:
   name: readthedocs
   highlightjs:
