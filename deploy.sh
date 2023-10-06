@@ -5,5 +5,20 @@ source env/bin/activate
 cd /home/admin/sop_probot_documents
 pip install -r requirements.txt
 pip install -r docs/requirements.txt
-mkdocs serve -a 0.0.0.0:8000
+ACTION=$1
+restart() {
+    echo "stop..."
+    pkill -f "mkdocs serve"
+    mkdocs serve -a 0.0.0.0:8000 > output.log 2>&1 &
+    echo "Start..."
+}
+case "$ACTION" in
+    restart)
+        restart
+    ;;
+    *)
+        restart
+    ;;
+esac
+
 
