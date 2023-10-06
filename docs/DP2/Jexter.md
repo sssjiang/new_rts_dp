@@ -1,47 +1,6 @@
 # Jexter
 
-## 规范
-
-### detail页面解析字段命令规范
-
-#### company
-
-##### 药品
-
- ["dp2_id","company","drug_name","drug_reference","attachments","auth_num" ]
-
-auth_num在网页有相关字段则提取。
-
-```json
-"dp2_id": 32113700
-"company": "西南药业股份有限公司"
-"drug_name": "盐酸吗啡缓释片（美菲康）",
-"drug_reference":html源码
-"attachments": [
-    {
-      "task_fp": "89e45c652281fc60bc9ff8c0066d7dc5",
-      "dp2_id": 32113700,
-      "title": "1667983011403339.png",
-      "link": "https://www.swp.cn/static/upload/image/20221109/1667983011403339.png",
-      "type": "png"
-    }
-  ]
-"auth_num": "国药准字H10930078",
-```
-
-##### 新闻
-
-["dp2_id","title","date","content","attachments"]
-
-```json
-"dp2_id": 32113701
-"title": "兰辉同志先进事迹学习材料",
-"date": "2013-10-30",
-"content":html源码
-"attachments": [],
-```
-
-
+jexter是json extracter缩写，通过jq,JMESPath 等工具从网页中提取目标内容，其中包含parent,total_rows,elements:[]
 
 ## parent
 
@@ -228,7 +187,7 @@ must_match: 仅用在提取表格数据时，按正则丢弃某些不需要的�
 </html>
 ```
 
-提取html中hello的parse_function如下
+提取html中hello的jexter如下
 
 ```json
 {
@@ -714,5 +673,40 @@ result
 {
   "title": "利巴"
 }
+```
+
+## 药厂公司提取内容结果示例
+
+### 药品
+
+ ["dp2_id","company","drug_name","drug_reference","attachments","auth_num" ]
+
+auth_num在网页有相关字段则提取。
+
+```json
+"dp2_id": 32113700
+"company": "西南药业股份有限公司"
+"drug_name": "盐酸吗啡缓释片（美菲康）",
+"drug_reference":html源码
+"attachments": [
+    {
+      "task_fp": "89e45c652281fc60bc9ff8c0066d7dc5",
+      "dp2_id": 32113700,
+      "title": "1667983011403339.png",
+      "link": "https://www.swp.cn/static/upload/image/20221109/1667983011403339.png",
+      "type": "png"
+    }
+  ]
+"auth_num": "国药准字H10930078",
+```
+
+### 新闻
+
+```json
+"dp2_id": 32113701
+"title": "兰辉同志先进事迹学习材料",
+"date": "2013-10-30",
+"content":html源码
+"attachments": [],
 ```
 
