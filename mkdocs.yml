@@ -39,7 +39,7 @@ plugins:
             docstring_style: sphinx
 markdown_extensions:
   - toc:
-    toc_depth: 3
+      toc_depth: 3
   - pymdownx.highlight:
       use_pygments: true
       # linenums: true
@@ -59,3 +59,8 @@ markdown_extensions:
 #   - css/custom.css
 # extra_javascript:
 #   - js/copy-button.js
+- pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid-experimental
+          format: !!python/name:pymdownx.superfences.fence_code_format
