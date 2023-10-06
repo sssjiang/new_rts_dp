@@ -47,8 +47,7 @@ markdown_extensions:
             lang_prefix: "language-"
             css_class: "highlight narrow"
   - admonition
-
 # extra_css:
 #   - css/custom.css
-extra_javascript:
-  - js/copy-button.js
+# extra_javascript:
+#   - js/copy-button.js
