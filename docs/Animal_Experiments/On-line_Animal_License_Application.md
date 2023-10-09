@@ -1,4 +1,4 @@
-# **Application for ANIMAL license**
+# **Application for Animal licenses**
 
 ## **Online submission:**
 
