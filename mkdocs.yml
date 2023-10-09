@@ -20,6 +20,8 @@ nav:
   - In-Vitro System:
       - Index: "In-Vitro_System/index.md"
 theme:
+  features:
+    - toc.follow
   name: material
   #name: readthedocs
   highlightjs:
@@ -45,11 +47,11 @@ markdown_extensions:
           format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.highlight:
       use_pygments: true
-      # linenums: true
-      # css_class: "highlight"
   - pymdownx.inlinehilite
   - pymdownx.snippets
   - admonition
+  - toc:
+      permalink: true
 # extra_css:
 #   - css/custom.css
 # extra_javascript:
