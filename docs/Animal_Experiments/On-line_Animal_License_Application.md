@@ -1,4 +1,4 @@
-# **Application for license/ permit/ endorsement(s) under the Animals**
+# **Application for ANIMAL license**
 
 ## **Online submission:**
 

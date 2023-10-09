@@ -1,8 +1,8 @@
 
 
-香港中文大学[左中教授课题组](https://www.pharmacy.cuhk.edu.hk/1/about-us/academic-staff/joanzuo/)整理的SOP（Standard Operating Procedure），仅用于内部成员学习交流使用，严禁外传！
+香港中文大学[左中教授课题组](https://www.pharmacy.cuhk.edu.hk/1/about-us/academic-staff/joanzuo/)整理的SOP（Standard Operating Procedure），仅用于内部成员学习交流使用！
 
-目录：
+###### 目录：
 
 [1. DP2](DP2/index.md)
 
