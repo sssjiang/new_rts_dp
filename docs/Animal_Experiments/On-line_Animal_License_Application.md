@@ -1,6 +1,6 @@
-# **Application for Animal licenses**
+# **Application for Animal license (On-line)**
 
-## **Online submission:**
+
 
 Prepare APP iAM(智方便) and iAM Smart(智方便+) in advance
 
@@ -14,27 +14,27 @@ Click the link:
 
 Start filling in a form by either **1) Start Filling in a New Form** or **2) Fill in a Saved Form**
 
-![图形用户界面, 应用程序描述已自动生成](imgs/Aspose.Words.834cee30-2a49-4d22-844a-4b18950ff2c5.001.png)
+![图形用户界面, 应用程序描述已自动生成](imgs/1.png)
 
 ### **Step 2 Application:**
 
 Fill in all the required information.
 
-![图形用户界面, 文本, 应用程序, 电子邮件描述已自动生成](imgs/Aspose.Words.834cee30-2a49-4d22-844a-4b18950ff2c5.002.png)
+![图形用户界面, 文本, 应用程序, 电子邮件描述已自动生成](imgs/2.1.png)
 
 For example:
 
-![图形用户界面, 文本, 应用程序, 电子邮件描述已自动生成](imgs/Aspose.Words.834cee30-2a49-4d22-844a-4b18950ff2c5.003.png)
+![图形用户界面, 文本, 应用程序, 电子邮件描述已自动生成](imgs/2.2.png)
 
-![图形用户界面, 文本, 应用程序, 电子邮件描述已自动生成](imgs/Aspose.Words.834cee30-2a49-4d22-844a-4b18950ff2c5.004.png)
+![图形用户界面, 文本, 应用程序, 电子邮件描述已自动生成](imgs/2.3.png)
 
-![图形用户界面, 文本, 应用程序, 电子邮件描述已自动生成](imgs/Aspose.Words.834cee30-2a49-4d22-844a-4b18950ff2c5.005.png)
+![图形用户界面, 文本, 应用程序, 电子邮件描述已自动生成](imgs/2.4.png)
 
-![图形用户界面, 文本, 应用程序, 电子邮件描述已自动生成](imgs/Aspose.Words.834cee30-2a49-4d22-844a-4b18950ff2c5.006.png)
+![图形用户界面, 文本, 应用程序, 电子邮件描述已自动生成](imgs/2.5.png)
 
-![图形用户界面, 文本, 应用程序, 电子邮件描述已自动生成](imgs/Aspose.Words.834cee30-2a49-4d22-844a-4b18950ff2c5.007.png)
+![图形用户界面, 文本, 应用程序, 电子邮件描述已自动生成](imgs/2.6.png)
 
-![图形用户界面, 文本, 应用程序描述已自动生成](imgs/Aspose.Words.834cee30-2a49-4d22-844a-4b18950ff2c5.008.png)
+![图形用户界面, 文本, 应用程序描述已自动生成](imgs/2.7.png)
 
 ### **Step 3 Annex:**
 
@@ -46,29 +46,29 @@ Tick **Annex selection 1 to 7** according to your personal needs
 
 Click the button
 
-![图形用户界面, 文本, 应用程序, 聊天或短信描述已自动生成](imgs/Aspose.Words.834cee30-2a49-4d22-844a-4b18950ff2c5.009.png)
+![图形用户界面, 文本, 应用程序, 聊天或短信描述已自动生成](imgs/3.1.png)
 
 Use APP iAM (智方便) to scan the QR code
 
-![QR 代码描述已自动生成](imgs/Aspose.Words.834cee30-2a49-4d22-844a-4b18950ff2c5.010.png)
+![QR 代码描述已自动生成](imgs/3.2.png)
 
 **2) type in**
 
-![图形用户界面, 文本, 应用程序描述已自动生成](imgs/Aspose.Words.834cee30-2a49-4d22-844a-4b18950ff2c5.011.png)
+![图形用户界面, 文本, 应用程序描述已自动生成](imgs/3.3.png)
 
 ### **Step 4 Digital Signature:**
 
 After making sure that the information is all correct, put a digital signature by **signing with iAM Smart**
 
-![图片包含 形状描述已自动生成](imgs/Aspose.Words.834cee30-2a49-4d22-844a-4b18950ff2c5.012.png)
+![图片包含 形状描述已自动生成](imgs/4.1.png)
 
-![图形用户界面, 文本, 应用程序描述已自动生成](imgs/Aspose.Words.834cee30-2a49-4d22-844a-4b18950ff2c5.013.png)
+![图形用户界面, 文本, 应用程序描述已自动生成](imgs/4.2.png)
 
-![图形用户界面, 应用程序描述已自动生成](imgs/Aspose.Words.834cee30-2a49-4d22-844a-4b18950ff2c5.014.png)
+![图形用户界面, 应用程序描述已自动生成](imgs/4.3.png)
 
-![图形用户界面, 文本, 应用程序描述已自动生成](imgs/Aspose.Words.834cee30-2a49-4d22-844a-4b18950ff2c5.015.png)
+![图形用户界面, 文本, 应用程序描述已自动生成](imgs/4.4.png)
 
-![QR 代码描述已自动生成](imgs/Aspose.Words.834cee30-2a49-4d22-844a-4b18950ff2c5.016.png)
+![QR 代码描述已自动生成](imgs/4.5.png)
 
 ### **Step 5 Review & Confirm:**
 
@@ -76,8 +76,5 @@ Check the following information before submission and submit
 
 ### **Step 6 Acknowledgement:**
 
-![文本描述已自动生成](imgs/Aspose.Words.834cee30-2a49-4d22-844a-4b18950ff2c5.017.png)
+![文本描述已自动生成](imgs/6.png)
 
-------
-
-Huang Qiao@2023-10-09-->
