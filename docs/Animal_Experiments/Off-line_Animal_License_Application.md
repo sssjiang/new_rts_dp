@@ -4,21 +4,27 @@
 
 ### **Step 1 Fill in the Form 1 and Annex to Form 1:**
 
-Download the latest application form (Form 1) from [DOH's website](https://www.dh.gov.hk/english/useful/useful_forms/useful_forms_ani.html)
+Download the latest application form (Form 1 & Annex to Form 1) from [DOH's website](https://www.dh.gov.hk/english/useful/useful_forms/useful_forms_ani.html)
 
 An example is showed as follows and please adjust the content **marked in yellow** according to your needs
 
-![](imgs2/1.png)
+![IMAGE](imgs2/1.png)
 
-![2](imgs2/2.png)
+![IMAGE](imgs2/2.png)
 
-![2](imgs2/3.png)
+![IMAGE](imgs2/3.png)
 
-![2](imgs2/4.png)![2](imgs2/5.png)![2](imgs2/6.png)
+![IMAGE](imgs2/4.png)
 
-![2](imgs2/7.png)
+![IMAGE](imgs2/5.png)
 
-![2](imgs2/8.png)![2](imgs2/9.png)
+![IMAGE](imgs2/6.png)
+
+![IMAGE](imgs2/7.png)
+
+![IMAGE](imgs2/8.png)
+
+![IMAGE](imgs2/9.png)
 
 
 

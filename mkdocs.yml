@@ -15,6 +15,8 @@ nav:
       - Guidance: "Analytical_Method_Validation/guidances.md"
   - Animal Experiments:
       - Index: "Animal_Experiments/index.md"
+      - AL Application (On-line): "Animal_Experiments/On-line_Animal_License_Application.md"
+      - AL Application (Off-line): "Animal_Experiments/Off-line_Animal_License_Application.md"
   - Cell Experiments:
       - Index: "Cell_Experiments/index.md"
   - In-Vitro System:
